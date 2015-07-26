@@ -27,12 +27,22 @@
 @interface NSLayoutConstraint (VBAutolayout)
 
 #pragma mark - short
+/**
+ *  Short variant.
+ *  @see constraintWithItem:attribute:relatedBy:toItem:attribute:multiplier:constant: <br>
+ *  <b>Default:</b> multiplier:1 constant:0
+ */
 + (instancetype) constraintWithItem:(id)view1
                           attribute:(NSLayoutAttribute)attr1
                           relatedBy:(NSLayoutRelation)relation
                              toItem:(id)view2
                           attribute:(NSLayoutAttribute)attr2;
 
+/**
+ *  Short variant.
+ *  @see constraintWithItem:attribute:relatedBy:toItem:attribute:multiplier:constant: <br>
+ *  <b>Default:</b> multiplier:1 constant:0
+ */
 + (instancetype) constraintWithItem:(id)view1
                           attribute:(NSLayoutAttribute)attr1
                           relatedBy:(NSLayoutRelation)relation
@@ -40,6 +50,11 @@
                           attribute:(NSLayoutAttribute)attr2
                            constant:(CGFloat)c;
 
+/**
+ *  Short variant.
+ *  @see constraintWithItem:attribute:relatedBy:toItem:attribute:multiplier:constant: <br>
+ *  <b>Default:</b> multiplier:1 constant:0
+ */
 + (instancetype) constraintWithItem:(id)view1
                           attribute:(NSLayoutAttribute)attr1
                           relatedBy:(NSLayoutRelation)relation
@@ -48,6 +63,23 @@
                          multiplier:(CGFloat)multiplier;
 
 #pragma mark - distance to items
+/**
+ *  Creates constraints for item to neightbours.
+ *
+ *  @param view         item
+ *  @param topView      neighbour item or nil for superview
+ *  @param topDist      @"100", @">=100", @"<100", @"100@999" or nil if not needed
+ *  @param bottomView   neighbour item or nil for superview
+ *  @param bottomDist   @"100", @">=100", @"<100", @"100@999" or nil if not needed
+ *  @param leadingView  neighbour item or nil for superview
+ *  @param leadingDist  @"100", @">=100", @"<100", @"100@999" or nil if not needed
+ *  @param trailingView neighbour item or nil for superview
+ *  @param trailingDist @"100", @">=100", @"<100", @"100@999" or nil if not needed
+ *
+ *  @return Created constraints in order [top, bottom, leading, trailing]. <br>
+ *  Array.count = 0..4 according to passed params. <br>
+ *  For example, [top, trailing] or [top, bottom, trailing]
+ */
 + (NSArray*) constraintsWithItem:(id)view
                          topItem:(id) topView
                          topDist:(NSString*) topDist
@@ -59,9 +91,25 @@
                     trailingDist:(NSString*) trailingDist;
 
 #pragma mark - size
+/**
+ *  Creates constraint for item width
+ *
+ *  @param view  item
+ *  @param width @"100", @">=100", @"<100", @"100@999"
+ *
+ *  @return Created constraint
+ */
 + (instancetype) constraintWithItem:(id)view
                               width:(NSString*)width;
 
+/**
+ *  Creates constraint for item height
+ *
+ *  @param view   item
+ *  @param height @"100", @">=100", @"<100", @"100@999"
+ *
+ *  @return Created constraint
+ */
 + (instancetype) constraintWithItem:(id)view
                              height:(NSString*)height;
 
