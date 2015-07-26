@@ -25,7 +25,7 @@
 #import <UIKit/UIKit.h>
 
 #define VBAutolayoutTop         @"VBAutolayoutTop"
-#define VBAutolayoutBottom      @"VBAutolayoutTop"
+#define VBAutolayoutBottom      @"VBAutolayoutBottom"
 #define VBAutolayoutLeading     @"VBAutolayoutLeading"
 #define VBAutolayoutTrailing    @"VBAutolayoutTrailing"
 
