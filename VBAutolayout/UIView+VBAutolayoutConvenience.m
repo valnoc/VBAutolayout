@@ -58,14 +58,18 @@
                                  trailingDist:trailingDist]];
     
     NSString* width = [self distanceWithAttributeValue:layout[VBAutolayoutAttributeWidth]];
-    [constraints addObject:
-     [NSLayoutConstraint constraintWithItem:view
-                                      width:width]];
+    if (width.length) {
+        [constraints addObject:
+         [NSLayoutConstraint constraintWithItem:view
+                                          width:width]];
+    }
     
     NSString* height = [self distanceWithAttributeValue:layout[VBAutolayoutAttributeHeight]];
-    [constraints addObject:
-     [NSLayoutConstraint constraintWithItem:view
-                                      width:height]];
+    if (height.length) {
+        [constraints addObject:
+         [NSLayoutConstraint constraintWithItem:view
+                                         height:height]];
+    }
     
     [self addConstraintsAndLayoutSubviews:constraints];
     
