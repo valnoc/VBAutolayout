@@ -22,11 +22,23 @@
 //    SOFTWARE.
 //
 
-#ifndef _do2go_VBAutolayout_h
-#define _do2go_VBAutolayout_h
+#import <UIKit/UIKit.h>
 
-#import "NSLayoutConstraint+VBAutolayout.h"
-#import "UIView+VBAutolayout.h"
-#import "UIView+VBAutolayoutConvenience.h"
+#define VBAutolayoutTop         @"VBAutolayoutTop"
+#define VBAutolayoutBottom      @"VBAutolayoutTop"
+#define VBAutolayoutLeading     @"VBAutolayoutLeading"
+#define VBAutolayoutTrailing    @"VBAutolayoutTrailing"
 
-#endif
+#define VBAutolayoutWidth       @"VBAutolayoutWidth"
+#define VBAutolayoutHeight      @"VBAutolayoutHeight"
+
+#define VBAutolayoutItem        @"VBAutolayoutItem"
+#define VBAutolayoutDistance    @"VBAutolayoutDistance"
+
+@interface UIView (VBAutolayoutConvenience)
+
+#pragma mark - addSubview
+- (NSArray*) addSubview:(UIView *)view
+             withLayout:(NSDictionary*)layout;
+
+@end

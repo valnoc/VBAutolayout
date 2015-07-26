@@ -29,50 +29,9 @@
 @implementation UIView (VBAutolayout)
 
 #pragma mark - addSubview
-- (NSArray*) addSubview:(UIView *)view
-            withTopItem:(id) topView
-                topDist:(NSString*) topDist
-             bottomItem:(id) bottomView
-             bottomDist:(NSString*) bottomDist
-            leadingItem:(id) leadingView
-            leadingDist:(NSString*) leadingDist
-           trailingItem:(id) trailingView
-           trailingDist:(NSString*) trailingDist {
-
-    [self addSubviewAutolayoutReady:view];
-    return [self addConstraintsAndLayoutSubviews:
-            [NSLayoutConstraint constraintsWithItem:view
-                                            topItem:topView
-                                            topDist:topDist
-                                         bottomItem:bottomView
-                                         bottomDist:bottomDist
-                                        leadingItem:leadingView
-                                        leadingDist:leadingDist
-                                       trailingItem:trailingView
-                                       trailingDist:trailingDist]];
-}
-
 - (void) addSubviewAutolayoutReady:(UIView *)view {
     view.translatesAutoresizingMaskIntoConstraints = NO;
     [self addSubview:view];
-}
-
-#pragma mark convenience
-- (NSArray*) addSubview:(UIView *)view
-            withTopDist:(NSString*) topDist
-             bottomDist:(NSString*) bottomDist
-            leadingDist:(NSString*) leadingDist
-           trailingDist:(NSString*) trailingDist {
-    
-    return [self addSubview:view
-                withTopItem:nil
-                    topDist:topDist
-                 bottomItem:nil
-                 bottomDist:bottomDist
-                leadingItem:nil
-                leadingDist:leadingDist
-               trailingItem:nil
-               trailingDist:trailingDist];
 }
 
 #pragma mark - constraints

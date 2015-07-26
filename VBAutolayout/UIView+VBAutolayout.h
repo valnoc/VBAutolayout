@@ -27,23 +27,7 @@
 @interface UIView (VBAutolayout)
 
 #pragma mark - addSubview
-- (NSArray*) addSubview:(UIView *)view
-            withTopItem:(id) topView
-                topDist:(NSString*) topDist
-             bottomItem:(id) bottomView
-             bottomDist:(NSString*) bottomDist
-            leadingItem:(id) leadingView
-            leadingDist:(NSString*) leadingDist
-           trailingItem:(id) trailingView
-           trailingDist:(NSString*) trailingDist;
 - (void) addSubviewAutolayoutReady:(UIView *)view;
-
-#pragma mark convenience
-- (NSArray*) addSubview:(UIView *)view
-            withTopDist:(NSString*) topDist
-             bottomDist:(NSString*) bottomDist
-            leadingDist:(NSString*) leadingDist
-           trailingDist:(NSString*) trailingDist;
 
 #pragma mark - constraints
 - (NSLayoutConstraint*) addConstraintAndLayoutSubviews:(NSLayoutConstraint*) constraint;
