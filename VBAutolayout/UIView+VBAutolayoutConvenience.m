@@ -34,14 +34,14 @@
              withLayout:(NSDictionary*)layout {
 #warning TODO validate dictionary
     
-    id topItem = [self itemWithAttributeValue:layout[VBAutolayoutTop]];
-    NSString* topDist = [self distanceWithAttributeValue:layout[VBAutolayoutTop]];
-    id bottomItem = [self itemWithAttributeValue:layout[VBAutolayoutBottom]];
-    NSString* bottomDist = [self distanceWithAttributeValue:layout[VBAutolayoutBottom]];
-    id leadingItem = [self itemWithAttributeValue:layout[VBAutolayoutLeading]];
-    NSString* leadingDist = [self distanceWithAttributeValue:layout[VBAutolayoutLeading]];
-    id trailingItem = [self itemWithAttributeValue:layout[VBAutolayoutTrailing]];
-    NSString* trailingDist = [self distanceWithAttributeValue:layout[VBAutolayoutTrailing]];
+    id topItem = [self itemWithAttributeValue:layout[VBAutolayoutAttributeTop]];
+    NSString* topDist = [self distanceWithAttributeValue:layout[VBAutolayoutAttributeTop]];
+    id bottomItem = [self itemWithAttributeValue:layout[VBAutolayoutAttributeBottom]];
+    NSString* bottomDist = [self distanceWithAttributeValue:layout[VBAutolayoutAttributeBottom]];
+    id leadingItem = [self itemWithAttributeValue:layout[VBAutolayoutAttributeLeading]];
+    NSString* leadingDist = [self distanceWithAttributeValue:layout[VBAutolayoutAttributeLeading]];
+    id trailingItem = [self itemWithAttributeValue:layout[VBAutolayoutAttributeTrailing]];
+    NSString* trailingDist = [self distanceWithAttributeValue:layout[VBAutolayoutAttributeTrailing]];
 
     [self addSubviewAutolayoutReady:view];
     
@@ -57,12 +57,12 @@
                                  trailingItem:trailingItem
                                  trailingDist:trailingDist]];
     
-    NSString* width = [self distanceWithAttributeValue:layout[VBAutolayoutWidth]];
+    NSString* width = [self distanceWithAttributeValue:layout[VBAutolayoutAttributeWidth]];
     [constraints addObject:
      [NSLayoutConstraint constraintWithItem:view
                                       width:width]];
     
-    NSString* height = [self distanceWithAttributeValue:layout[VBAutolayoutHeight]];
+    NSString* height = [self distanceWithAttributeValue:layout[VBAutolayoutAttributeHeight]];
     [constraints addObject:
      [NSLayoutConstraint constraintWithItem:view
                                       width:height]];
