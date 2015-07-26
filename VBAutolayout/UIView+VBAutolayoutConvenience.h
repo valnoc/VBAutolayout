@@ -49,7 +49,7 @@
   VBAutolayoutAttribute: @"100"} 
 @endcode
  *
- *  @return Added constraints
+ *  @return Created constraints in order [top, bottom, leading, trailing, width, height]
  */
 - (NSArray*) addSubview:(UIView *)view
              withLayout:(NSDictionary*)layout;
