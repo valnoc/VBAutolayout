@@ -27,10 +27,30 @@
 @interface UIView (VBAutolayout)
 
 #pragma mark - addSubview
+/**
+ *  Add subview with translatesAutoresizingMaskIntoConstraints = NO
+ *
+ *  @param view subview
+ */
 - (void) addSubviewAutolayoutReady:(UIView *)view;
 
 #pragma mark - constraints
+/**
+ *  Add constraint and call setNeedsLayout, layoutIfNeeded
+ *
+ *  @param constraint Constraint to add
+ *
+ *  @return returns added constraint
+ */
 - (NSLayoutConstraint*) addConstraintAndLayoutSubviews:(NSLayoutConstraint*) constraint;
+
+/**
+ *  Add constraint and call setNeedsLayout, layoutIfNeeded
+ *
+ *  @param constraints Constraints to add
+ *
+ *  @return added constraints
+ */
 - (NSArray*) addConstraintsAndLayoutSubviews:(NSArray *)constraints;
 
 @end

@@ -24,13 +24,13 @@
 
 #import <UIKit/UIKit.h>
 
-#define VBAutolayoutTop         @"VBAutolayoutTop"
-#define VBAutolayoutBottom      @"VBAutolayoutBottom"
-#define VBAutolayoutLeading     @"VBAutolayoutLeading"
-#define VBAutolayoutTrailing    @"VBAutolayoutTrailing"
+#define VBAutolayoutAttributeTop         @"VBAutolayoutAttributeTop"
+#define VBAutolayoutAttributeBottom      @"VBAutolayoutAttributeBottom"
+#define VBAutolayoutAttributeLeading     @"VBAutolayoutAttributeLeading"
+#define VBAutolayoutAttributeTrailing    @"VBAutolayoutAttributeTrailing"
 
-#define VBAutolayoutWidth       @"VBAutolayoutWidth"
-#define VBAutolayoutHeight      @"VBAutolayoutHeight"
+#define VBAutolayoutAttributeWidth       @"VBAutolayoutAttributeWidth"
+#define VBAutolayoutAttributeHeight      @"VBAutolayoutAttributeHeight"
 
 #define VBAutolayoutItem        @"VBAutolayoutItem"
 #define VBAutolayoutDistance    @"VBAutolayoutDistance"
@@ -38,6 +38,19 @@
 @interface UIView (VBAutolayoutConvenience)
 
 #pragma mark - addSubview
+/**
+ *  Add subview with constraints
+ *
+ *  @param view   subview
+ *  @param layout Keys are VBAutolayoutAttributes, values are NSString for distance/value or NSDictionary with keys VBAutolayoutItem and VBAutolayoutDistance. 
+ *  @code 
+@{VBAutolayoutAttribute: @{VBAutolayoutItem: item,
+                           VBAutolayoutDistance: @"100"}, 
+  VBAutolayoutAttribute: @"100"} 
+@endcode
+ *
+ *  @return Added constraints
+ */
 - (NSArray*) addSubview:(UIView *)view
              withLayout:(NSDictionary*)layout;
 
