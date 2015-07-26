@@ -22,6 +22,14 @@
 //    SOFTWARE.
 //
 
+/**
+ *  There are developers (like me) who prefer to create UI programmatically due to numerous reasons. I use storyboards for segues and user scene-path. But UIViewControllers are left empty. And I do not use xibs.
+ *
+ *  When you create adaptive UI programmatically the view (or viewcontroller) code becomes unreadable because of big autolayout creation calls.
+ *
+ *  VBAutolayout is library which makes programmatic autolayout creation comfortable, readable and code-minimized.
+ */
+
 #ifndef _do2go_VBAutolayout_h
 #define _do2go_VBAutolayout_h
 
