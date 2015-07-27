@@ -35,13 +35,13 @@
 #warning TODO validate dictionary
     
     id topItem = [self itemWithAttributeValue:layout[VBAutolayoutAttributeTop]];
-    NSString* topDist = [self distanceWithAttributeValue:layout[VBAutolayoutAttributeTop]];
+    NSString* topDist = [self constantWithAttributeValue:layout[VBAutolayoutAttributeTop]];
     id bottomItem = [self itemWithAttributeValue:layout[VBAutolayoutAttributeBottom]];
-    NSString* bottomDist = [self distanceWithAttributeValue:layout[VBAutolayoutAttributeBottom]];
+    NSString* bottomDist = [self constantWithAttributeValue:layout[VBAutolayoutAttributeBottom]];
     id leadingItem = [self itemWithAttributeValue:layout[VBAutolayoutAttributeLeading]];
-    NSString* leadingDist = [self distanceWithAttributeValue:layout[VBAutolayoutAttributeLeading]];
+    NSString* leadingDist = [self constantWithAttributeValue:layout[VBAutolayoutAttributeLeading]];
     id trailingItem = [self itemWithAttributeValue:layout[VBAutolayoutAttributeTrailing]];
-    NSString* trailingDist = [self distanceWithAttributeValue:layout[VBAutolayoutAttributeTrailing]];
+    NSString* trailingDist = [self constantWithAttributeValue:layout[VBAutolayoutAttributeTrailing]];
 
     [self addSubviewAutolayoutReady:view];
     
@@ -58,7 +58,7 @@
                                  trailingDist:trailingDist]];
     
     //
-    NSString* width = [self distanceWithAttributeValue:layout[VBAutolayoutAttributeWidth]];
+    NSString* width = [self constantWithAttributeValue:layout[VBAutolayoutAttributeWidth]];
     if (width.length) {
         [constraints addObject:
          [NSLayoutConstraint constraintWithItem:view
@@ -66,7 +66,7 @@
     }
     
     //
-    NSString* height = [self distanceWithAttributeValue:layout[VBAutolayoutAttributeHeight]];
+    NSString* height = [self constantWithAttributeValue:layout[VBAutolayoutAttributeHeight]];
     if (height.length) {
         [constraints addObject:
          [NSLayoutConstraint constraintWithItem:view
@@ -74,7 +74,7 @@
     }
 
     //
-    NSString* centerXConst = [self distanceWithAttributeValue:layout[VBAutolayoutAttributeCenterX]];
+    NSString* centerXConst = [self constantWithAttributeValue:layout[VBAutolayoutAttributeCenterX]];
     if (centerXConst) {
         id centerXItem = [self itemWithAttributeValue:layout[VBAutolayoutAttributeCenterX]];
         if (centerXItem == nil) {
@@ -89,7 +89,7 @@
     }
     
     //
-    NSString* centerYConst = [self distanceWithAttributeValue:layout[VBAutolayoutAttributeCenterY]];
+    NSString* centerYConst = [self constantWithAttributeValue:layout[VBAutolayoutAttributeCenterY]];
     if (centerYConst) {
         id centerYItem = [self itemWithAttributeValue:layout[VBAutolayoutAttributeCenterY]];
         if (centerYItem == nil) {
@@ -109,7 +109,7 @@
     return constraints;
 }
 
-- (NSString*) distanceWithAttributeValue:(id)attributeValue {
+- (NSString*) constantWithAttributeValue:(id)attributeValue {
     return [attributeValue isKindOfClass:[NSDictionary class]] ? attributeValue[VBAutolayoutConstant] : attributeValue;
 }
 
