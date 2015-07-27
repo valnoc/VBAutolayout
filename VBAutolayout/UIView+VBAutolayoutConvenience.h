@@ -42,7 +42,9 @@
 
 #pragma mark - addSubview
 /**
- *  Add subview with constraints. Constraint is ognored If no constant was given (as NSString or NSString value of VBAutolayoutConstant in dictionary).
+ *  Add subview with constraints. 
+ *  Constraint is ignored if no constant was given (as NSString or NSString value of VBAutolayoutConstant in dictionary).
+ *  Superview is used if no item was given (as id value of VBAutolayoutItem in dictionary)
  *
  *  @param view   subview
  *  @param layout Keys are VBAutolayoutAttributes, values are NSString for distance/value or NSDictionary with keys VBAutolayoutItem and VBAutolayoutConstant. 
