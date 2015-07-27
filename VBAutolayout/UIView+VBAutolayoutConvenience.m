@@ -32,7 +32,7 @@
 #pragma mark - addSubview
 - (NSArray*) addSubview:(UIView *)view
              withLayout:(NSDictionary*)layout {
-#warning TODO validate dictionary
+//#warning TODO validate dictionary
     
     id topItem = [self itemWithAttributeValue:layout[VBAutolayoutAttributeTop]];
     NSString* topDist = [self constantWithAttributeValue:layout[VBAutolayoutAttributeTop]];

@@ -90,7 +90,7 @@
                     trailingItem:(id) trailingView
                     trailingDist:(NSString*) trailingDist {
     
-#warning TODO add params check
+//#warning TODO add params check
     UIView* superview = ((UIView*)view).superview;
 
     NSMutableDictionary* views = [NSMutableDictionary new];
@@ -136,7 +136,7 @@
 #pragma mark - size
 + (instancetype) constraintWithItem:(id)view
                               width:(NSString*)width {
-#warning TODO add params check
+//#warning TODO add params check
     return [[NSLayoutConstraint constraintsWithVisualFormat:[NSString stringWithFormat:@"H:[view(%@)]", width]
                                                     options:0
                                                     metrics:nil
