@@ -57,6 +57,7 @@
                                  trailingItem:trailingItem
                                  trailingDist:trailingDist]];
     
+    //
     NSString* width = [self distanceWithAttributeValue:layout[VBAutolayoutAttributeWidth]];
     if (width.length) {
         [constraints addObject:
@@ -64,20 +65,52 @@
                                           width:width]];
     }
     
+    //
     NSString* height = [self distanceWithAttributeValue:layout[VBAutolayoutAttributeHeight]];
     if (height.length) {
         [constraints addObject:
          [NSLayoutConstraint constraintWithItem:view
                                          height:height]];
     }
+
+    //
+    NSString* centerXConst = [self distanceWithAttributeValue:layout[VBAutolayoutAttributeCenterX]];
+    if (centerXConst) {
+        id centerXItem = [self itemWithAttributeValue:layout[VBAutolayoutAttributeCenterX]];
+        if (centerXItem == nil) {
+            centerXItem = self.superview;
+        }
+        [constraints addObject:
+         [NSLayoutConstraint constraintWithItem:view
+                                      attribute:NSLayoutAttributeCenterX
+                                      relatedBy:NSLayoutRelationEqual
+                                         toItem:centerXItem
+                                      attribute:NSLayoutAttributeCenterX]];
+    }
     
+    //
+    NSString* centerYConst = [self distanceWithAttributeValue:layout[VBAutolayoutAttributeCenterY]];
+    if (centerYConst) {
+        id centerYItem = [self itemWithAttributeValue:layout[VBAutolayoutAttributeCenterY]];
+        if (centerYItem == nil) {
+            centerYItem = self.superview;
+        }
+        [constraints addObject:
+         [NSLayoutConstraint constraintWithItem:view
+                                      attribute:NSLayoutAttributeCenterY
+                                      relatedBy:NSLayoutRelationEqual
+                                         toItem:centerYItem
+                                      attribute:NSLayoutAttributeCenterY]];
+    }
+
+    //
     [self addConstraintsAndLayoutSubviews:constraints];
     
     return constraints;
 }
 
 - (NSString*) distanceWithAttributeValue:(id)attributeValue {
-    return [attributeValue isKindOfClass:[NSDictionary class]] ? attributeValue[VBAutolayoutDistance] : attributeValue;
+    return [attributeValue isKindOfClass:[NSDictionary class]] ? attributeValue[VBAutolayoutConstant] : attributeValue;
 }
 
 - (id) itemWithAttributeValue:(id)attributeValue {

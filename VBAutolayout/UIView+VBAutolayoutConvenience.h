@@ -24,32 +24,35 @@
 
 #import <UIKit/UIKit.h>
 
-#define VBAutolayoutAttributeTop         @"VBAutolayoutAttributeTop"
-#define VBAutolayoutAttributeBottom      @"VBAutolayoutAttributeBottom"
-#define VBAutolayoutAttributeLeading     @"VBAutolayoutAttributeLeading"
-#define VBAutolayoutAttributeTrailing    @"VBAutolayoutAttributeTrailing"
+#define VBAutolayoutAttributeTop        @"VBAutolayoutAttributeTop"
+#define VBAutolayoutAttributeBottom     @"VBAutolayoutAttributeBottom"
+#define VBAutolayoutAttributeLeading    @"VBAutolayoutAttributeLeading"
+#define VBAutolayoutAttributeTrailing   @"VBAutolayoutAttributeTrailing"
 
-#define VBAutolayoutAttributeWidth       @"VBAutolayoutAttributeWidth"
-#define VBAutolayoutAttributeHeight      @"VBAutolayoutAttributeHeight"
+#define VBAutolayoutAttributeWidth      @"VBAutolayoutAttributeWidth"
+#define VBAutolayoutAttributeHeight     @"VBAutolayoutAttributeHeight"
+
+#define VBAutolayoutAttributeCenterX    @"VBAutolayoutAttributeCenterX"
+#define VBAutolayoutAttributeCenterY    @"VBAutolayoutAttributeCenterY"
 
 #define VBAutolayoutItem        @"VBAutolayoutItem"
-#define VBAutolayoutDistance    @"VBAutolayoutDistance"
+#define VBAutolayoutConstant    @"VBAutolayoutConstant"
 
 @interface UIView (VBAutolayoutConvenience)
 
 #pragma mark - addSubview
 /**
- *  Add subview with constraints
+ *  Add subview with constraints. Constraint is ognored If no constant was given (as NSString or NSString value of VBAutolayoutConstant in dictionary).
  *
  *  @param view   subview
- *  @param layout Keys are VBAutolayoutAttributes, values are NSString for distance/value or NSDictionary with keys VBAutolayoutItem and VBAutolayoutDistance. 
+ *  @param layout Keys are VBAutolayoutAttributes, values are NSString for distance/value or NSDictionary with keys VBAutolayoutItem and VBAutolayoutConstant. 
  *  @code 
 @{VBAutolayoutAttribute: @{VBAutolayoutItem: item,
-                           VBAutolayoutDistance: @"100"}, 
+                           VBAutolayoutConstant: @"100"}, 
   VBAutolayoutAttribute: @"100"} 
 @endcode
  *
- *  @return Created constraints in order [top, bottom, leading, trailing, width, height]
+ *  @return Created constraints in order [top, bottom, leading, trailing, width, height, centerX, centerY]
  */
 - (NSArray*) addSubview:(UIView *)view
              withLayout:(NSDictionary*)layout;
