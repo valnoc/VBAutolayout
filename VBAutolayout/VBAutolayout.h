@@ -30,8 +30,8 @@
  *  VBAutolayout is library which makes programmatic autolayout creation comfortable, readable and code-minimized.
  */
 
-#ifndef _do2go_VBAutolayout_h
-#define _do2go_VBAutolayout_h
+#ifndef VBAutolayout_h
+#define VBAutolayout_h
 
 #import "NSLayoutConstraint+VBAutolayout.h"
 #import "UIView+VBAutolayout.h"
