@@ -5,7 +5,7 @@ There are developers (like me) who prefer to create UI programmatically due to n
 
 When you create adaptive UI programmatically the view (or viewcontroller) code becomes unreadable because of big autolayout creation calls.
 
-VBAutolayout is library which makes programmatic autolayout creation comfortable, readable and code-minimized.
+VBAutolayout is a library which makes programmatic autolayout creation comfortable, readable and code-minimized.
 
 ## How to install
 Use CocoaPods
