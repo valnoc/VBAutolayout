@@ -85,7 +85,8 @@
                                       attribute:NSLayoutAttributeCenterX
                                       relatedBy:NSLayoutRelationEqual
                                          toItem:centerXItem
-                                      attribute:NSLayoutAttributeCenterX]];
+                                      attribute:NSLayoutAttributeCenterX
+                                       constant:[centerXConst doubleValue]]];
     }
     
     //
@@ -100,7 +101,8 @@
                                       attribute:NSLayoutAttributeCenterY
                                       relatedBy:NSLayoutRelationEqual
                                          toItem:centerYItem
-                                      attribute:NSLayoutAttributeCenterY]];
+                                      attribute:NSLayoutAttributeCenterY
+                                       constant:[centerYConst doubleValue]]];
     }
 
     //
