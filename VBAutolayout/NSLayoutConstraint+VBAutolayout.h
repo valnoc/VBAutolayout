@@ -68,13 +68,13 @@
  *
  *  @param view         item
  *  @param topView      neighbour item or nil for superview
- *  @param topDist      @"100", @">=100", @"<100", @"100@999" or nil if not needed
+ *  @param topDist      @"100", @">=100", @"100@999" or nil if not needed
  *  @param bottomView   neighbour item or nil for superview
- *  @param bottomDist   @"100", @">=100", @"<100", @"100@999" or nil if not needed
+ *  @param bottomDist   @"100", @">=100", @"100@999" or nil if not needed
  *  @param leadingView  neighbour item or nil for superview
- *  @param leadingDist  @"100", @">=100", @"<100", @"100@999" or nil if not needed
+ *  @param leadingDist  @"100", @">=100", @"100@999" or nil if not needed
  *  @param trailingView neighbour item or nil for superview
- *  @param trailingDist @"100", @">=100", @"<100", @"100@999" or nil if not needed
+ *  @param trailingDist @"100", @">=100", @"100@999" or nil if not needed
  *
  *  @return Created constraints in order [top, bottom, leading, trailing]. <br>
  *  Array.count = 0..4 according to passed params. <br>
@@ -95,7 +95,7 @@
  *  Creates constraint for item width
  *
  *  @param view  item
- *  @param width @"100", @">=100", @"<100", @"100@999"
+ *  @param width @"100", @">=100", @"100@999"
  *
  *  @return Created constraint
  */
@@ -106,7 +106,7 @@
  *  Creates constraint for item height
  *
  *  @param view   item
- *  @param height @"100", @">=100", @"<100", @"100@999"
+ *  @param height @"100", @">=100", @"100@999"
  *
  *  @return Created constraint
  */
