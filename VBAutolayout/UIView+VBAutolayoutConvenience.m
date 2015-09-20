@@ -78,7 +78,7 @@
     if (centerXConst) {
         id centerXItem = [self itemWithAttributeValue:layout[VBAutolayoutAttributeCenterX]];
         if (centerXItem == nil) {
-            centerXItem = self.superview;
+            centerXItem = view.superview;
         }
         [constraints addObject:
          [NSLayoutConstraint constraintWithItem:view
@@ -94,7 +94,7 @@
     if (centerYConst) {
         id centerYItem = [self itemWithAttributeValue:layout[VBAutolayoutAttributeCenterY]];
         if (centerYItem == nil) {
-            centerYItem = self.superview;
+            centerYItem = view.superview;
         }
         [constraints addObject:
          [NSLayoutConstraint constraintWithItem:view
