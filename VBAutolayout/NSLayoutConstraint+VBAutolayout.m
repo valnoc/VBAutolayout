@@ -80,67 +80,83 @@
 }
 
 #pragma mark - layout
-+ (nonnull NSArray<NSLayoutConstraint*>*) constraintsWithItem:(nonnull id) view1
-                                                       layout:(nonnull NSDictionary*) layout {
-    id attrInfoTop = layout[VBAutolayoutAttributeTop];
-    id attrInfoBottom = layout[VBAutolayoutAttributeBottom];
-    id attrInfoLeading = layout[VBAutolayoutAttributeLeading];
-    id attrInfoTrailing = layout[VBAutolayoutAttributeTrailing];
-    id attrInfoWidth = layout[VBAutolayoutAttributeWidth];
-    id attrInfoHeight = layout[VBAutolayoutAttributeHeight];
-    id attrInfoCenterX = layout[VBAutolayoutAttributeCenterX];
-    id attrInfoCenterY = layout[VBAutolayoutAttributeCenterY];
-    NSMutableArray<NSLayoutConstraint*>* cnstr = [NSMutableArray new];
-    //
-    if (attrInfoTop) {
-        [cnstr addObjectsFromArray:[self constraintsWithItem:view1
-                                                  attribute1:NSLayoutAttributeTop
-                                                  attribute2:NSLayoutAttributeBottom
-                                                    attrInfo:attrInfoTop]];
-    }
-    if (attrInfoBottom) {
-        [cnstr addObjectsFromArray:[self constraintsWithItem:view1
-                                                  attribute1:NSLayoutAttributeBottom
-                                                  attribute2:NSLayoutAttributeTop
-                                                    attrInfo:attrInfoBottom]];
-    }
-    if (attrInfoLeading) {
-        [cnstr addObjectsFromArray:[self constraintsWithItem:view1
-                                                  attribute1:NSLayoutAttributeLeading
-                                                  attribute2:NSLayoutAttributeTrailing
-                                                    attrInfo:attrInfoLeading]];
-    }
-    if (attrInfoTrailing) {
-        [cnstr addObjectsFromArray:[self constraintsWithItem:view1
-                                                  attribute1:NSLayoutAttributeTrailing
-                                                  attribute2:NSLayoutAttributeLeading
-                                                    attrInfo:attrInfoTrailing]];
-    }
-    if (attrInfoWidth) {
-        [cnstr addObjectsFromArray:[self constraintsWithItem:view1
-                                                  attribute1:NSLayoutAttributeWidth
-                                                  attribute2:NSLayoutAttributeNotAnAttribute
-                                                    attrInfo:attrInfoWidth]];
-    }
-    if (attrInfoHeight) {
-        [cnstr addObjectsFromArray:[self constraintsWithItem:view1
-                                                  attribute1:NSLayoutAttributeHeight
-                                                  attribute2:NSLayoutAttributeNotAnAttribute
-                                                    attrInfo:attrInfoHeight]];
-    }
-    if (attrInfoCenterX) {
-        [cnstr addObjectsFromArray:[self constraintsWithItem:view1
-                                                  attribute1:NSLayoutAttributeCenterX
-                                                  attribute2:NSLayoutAttributeCenterX
-                                                    attrInfo:attrInfoCenterX]];
-    }
-    if (attrInfoCenterY) {
-        [cnstr addObjectsFromArray:[self constraintsWithItem:view1
-                                                  attribute1:NSLayoutAttributeCenterY
-                                                  attribute2:NSLayoutAttributeCenterY
-                                                    attrInfo:attrInfoCenterY]];
-    }
++ (nonnull NSDictionary*) constraintsWithItem:(nonnull id) view1
+                                       layout:(nonnull NSDictionary*) layout {
+    NSMutableDictionary* cnstr = [NSMutableDictionary new];
+    
+    [self addConstraintsToDictionary:cnstr
+                            withItem:view1
+                          attribute1:NSLayoutAttributeTop
+                          attribute2:NSLayoutAttributeBottom
+                                attr:VBAutolayoutAttributeTop
+                              layout:layout];
+
+    [self addConstraintsToDictionary:cnstr
+                            withItem:view1
+                          attribute1:NSLayoutAttributeBottom
+                          attribute2:NSLayoutAttributeTop
+                                attr:VBAutolayoutAttributeBottom
+                              layout:layout];
+    
+    [self addConstraintsToDictionary:cnstr
+                            withItem:view1
+                          attribute1:NSLayoutAttributeLeading
+                          attribute2:NSLayoutAttributeTrailing
+                                attr:VBAutolayoutAttributeLeading
+                              layout:layout];
+    
+    [self addConstraintsToDictionary:cnstr
+                            withItem:view1
+                          attribute1:NSLayoutAttributeTrailing
+                          attribute2:NSLayoutAttributeLeading
+                                attr:VBAutolayoutAttributeTrailing
+                              layout:layout];
+    
+    [self addConstraintsToDictionary:cnstr
+                            withItem:view1
+                          attribute1:NSLayoutAttributeWidth
+                          attribute2:NSLayoutAttributeNotAnAttribute
+                                attr:VBAutolayoutAttributeWidth
+                              layout:layout];
+    
+    [self addConstraintsToDictionary:cnstr
+                            withItem:view1
+                          attribute1:NSLayoutAttributeHeight
+                          attribute2:NSLayoutAttributeNotAnAttribute
+                                attr:VBAutolayoutAttributeHeight
+                              layout:layout];
+    
+    [self addConstraintsToDictionary:cnstr
+                            withItem:view1
+                          attribute1:NSLayoutAttributeCenterX
+                          attribute2:NSLayoutAttributeCenterX
+                                attr:VBAutolayoutAttributeCenterX
+                              layout:layout];
+    
+    [self addConstraintsToDictionary:cnstr
+                            withItem:view1
+                          attribute1:NSLayoutAttributeCenterY
+                          attribute2:NSLayoutAttributeCenterY
+                                attr:VBAutolayoutAttributeCenterY
+                              layout:layout];
+
     return cnstr;
+}
+
+#pragma mark helpers
++ (void) addConstraintsToDictionary:(NSMutableDictionary*)cnstr
+                           withItem:(id) view1
+                         attribute1:(NSLayoutAttribute)attr1
+                         attribute2:(NSLayoutAttribute)attr2
+                               attr:(NSString*)attr
+                             layout:(id)layout {
+    if (layout[attr]) {
+        NSArray* constraints = [self constraintsWithItem:view1
+                                              attribute1:attr1
+                                              attribute2:attr2
+                                                attrInfo:layout[attr]];
+        cnstr[attr] = constraints.count > 1 ? constraints : constraints.lastObject;
+    }
 }
 
 + (nonnull NSArray<NSLayoutConstraint*>*) constraintsWithItem:(nonnull id) view1
@@ -172,7 +188,9 @@
     NSArray<NSNumber*>* cnstInfo = [self parsedLayoutConstant:[self constantWithAttrInfo:attrInfo]];
     //
     id item = [self itemWithAttrInfo:attrInfo];
-    if (item == nil && attr2 != NSLayoutAttributeNotAnAttribute) {
+    if (attr2 == NSLayoutAttributeNotAnAttribute) {
+        item = nil;
+    }else if (item == nil) {
         item = superview;
         attr2 = attr1;
     }
@@ -199,6 +217,7 @@
                                                        withString:@"$1"
                                                           options:NSRegularExpressionSearch
                                                             range:NSMakeRange(0, constant.length)];
+#warning add priority
     return @[@(relation), @(cnst.doubleValue)];
 }
 + (nonnull NSString*) constantWithAttrInfo:(nonnull id) attrInfo {
