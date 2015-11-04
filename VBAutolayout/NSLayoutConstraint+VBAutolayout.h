@@ -78,7 +78,7 @@
 
 #pragma mark - layout
 /**
- Creates constraints for item based on layout dictionary.
+ Create constraints for item based on layout dictionary.
  Constraints are created only for VBAutolayoutAttribute-s contained in layout dictionary. Attribute is ignored if no VBAutolayoutConstant value was given.
  
  Layout dictionary format:
@@ -87,26 +87,38 @@
    VBAutolayoutAttribute: <3>
  }
 
- <1> =  @[@{VBAutolayoutItem: <item>,
-            VBAutolayoutConstant: <const>},
-          @{VBAutolayoutItem: <item>,
-            VBAutolayoutConstant: <const>}]
+ <1> =  <const>
  
  <2> =  @{VBAutolayoutItem: <item>,
           VBAutolayoutConstant: <const>}
  
- <3> =  <const>
+ <3> =  @[<1>, <2>, ...]
  
- <item> is a view2 in constraint
+ <item> is a view2 in constraint. If no <item> specified, then superview is used and constraint is interpreted as a constraint to view container.
  <const> is a string with the same format as could be used for Visual Format Constraints Creation
     <relation><constant>@<priority>, ex. 10, ==10, >=10, <=10, 10@999, >=10@999, etc.
     <relation> =    1) <, <= for <=
                     2) >, >= for >=
                     3) =, == for ==
 
- @return Created constraints in order [top, bottom, leading, trailing, width, height, centerX, centerY]
+ Several constraints can be combined for one attribute using variant <3>.
+ 
+ 
+ Examples,
+ 
+ 1) distance greater or equal then 10 from item top to __someView__ bottom with 999 priority
+ VBAutolayoutAttributeTop: @{VBAutolayoutItem: __someView__,
+                             VBAutolayoutConstant: @">=10@999"}
+
+ 2) distance equal to 0 from item leading to __someView__ trailing
+ VBAutolayoutAttributeLeading: @{VBAutolayoutItem: __someView__}
+ 
+ 2) distance equal to 0 from item leading to container leading
+ VBAutolayoutAttributeLeading: @"0"
+ 
+ @return Created constraints as NSDictionary. Keys are VBAutolayoutAttribute-s. Values are NSLayoutConstraint* or NSArray<NSLayoutConstraint*>* depending on given layout.
  */
-+ (nonnull NSArray<NSLayoutConstraint*>*) constraintsWithItem:(nonnull id) view1
-                                                       layout:(nonnull NSDictionary*) layout;
++ (nonnull NSDictionary*) constraintsWithItem:(nonnull id) view1
+                                       layout:(nonnull NSDictionary*) layout;
 
 @end
