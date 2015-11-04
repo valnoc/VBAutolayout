@@ -78,42 +78,35 @@
 
 #pragma mark - layout
 /**
- *  Creates constraints for item based on layout dictionary.
- *  Constraint is ignored if no constant was given (as NSString or NSString value of VBAutolayoutConstant in dictionary).
- *  Superview is used if no item was given (as id value of VBAutolayoutItem in dictionary)
- *
- *  <b>Warning!</b> centerX and centerY use constant of double format only (@"100", no relation @">=100" or priority @"100@999"). This features will be added later.
- *
- *  @param view   subview
- *  @param layout Keys are VBAutolayoutAttributes, values are NSString for distance/value or NSDictionary with keys VBAutolayoutItem and VBAutolayoutConstant.
- *  @code
- @{VBAutolayoutAttribute: @{VBAutolayoutItem: item,
- VBAutolayoutConstant: @"100"},
- VBAutolayoutAttribute: @"100"}
- @endcode
- *
- *  @return Created constraints in order [top, bottom, leading, trailing, width, height, centerX, centerY]
+ Creates constraints for item based on layout dictionary.
+ Constraints are created only for VBAutolayoutAttribute-s contained in layout dictionary. Attribute is ignored if no VBAutolayoutConstant value was given.
+ 
+ Layout dictionary format:
+ @{VBAutolayoutAttribute: <1>,
+   VBAutolayoutAttribute: <2>,
+   VBAutolayoutAttribute: <3>
+ }
+
+ <1> =  @[@{VBAutolayoutItem: <item>,
+            VBAutolayoutConstant: <const>},
+          @{VBAutolayoutItem: <item>,
+            VBAutolayoutConstant: <const>}]
+ 
+ <2> =  @{VBAutolayoutItem: <item>,
+          VBAutolayoutConstant: <const>}
+ 
+ <3> =  <const>
+ 
+ <item> is a view2 in constraint
+ <const> is a string with the same format as could be used for Visual Format Constraints Creation
+    <relation><constant>@<priority>, ex. 10, ==10, >=10, <=10, 10@999, >=10@999, etc.
+    <relation> =    1) <, <= for <=
+                    2) >, >= for >=
+                    3) =, == for ==
+
+ @return Created constraints in order [top, bottom, leading, trailing, width, height, centerX, centerY]
  */
 + (nonnull NSArray<NSLayoutConstraint*>*) constraintsWithItem:(nonnull id) view1
                                                        layout:(nonnull NSDictionary*) layout;
-
-#pragma mark - distance to items
-/**
- *  Creates constraints for item to neightbours.
- *
- *  @param view         item
- *  @param topView      neighbour item or nil for superview
- *  @param topDist      @"100", @">=100", @"100@999" or nil if not needed
- *  @param bottomView   neighbour item or nil for superview
- *  @param bottomDist   @"100", @">=100", @"100@999" or nil if not needed
- *  @param leadingView  neighbour item or nil for superview
- *  @param leadingDist  @"100", @">=100", @"100@999" or nil if not needed
- *  @param trailingView neighbour item or nil for superview
- *  @param trailingDist @"100", @">=100", @"100@999" or nil if not needed
- *
- *  @return Created constraints in order [top, bottom, leading, trailing]. <br>
- *  Array.count = 0..4 according to passed params. <br>
- *  For example, [top, trailing] or [top, bottom, trailing]
- */
 
 @end
