@@ -16,7 +16,6 @@
 		5B4B18091B5D981F003C2826 /* VBAutolayoutExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B4B18081B5D981F003C2826 /* VBAutolayoutExampleTests.m */; };
 		5B4B181C1B5D991F003C2826 /* NSLayoutConstraint+VBAutolayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B4B18181B5D991F003C2826 /* NSLayoutConstraint+VBAutolayout.m */; };
 		5B4B181D1B5D991F003C2826 /* UIView+VBAutolayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B4B181A1B5D991F003C2826 /* UIView+VBAutolayout.m */; };
-		5B4B18201B5D9974003C2826 /* UIView+VBAutolayoutConvenience.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B4B181F1B5D9974003C2826 /* UIView+VBAutolayoutConvenience.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,8 +47,6 @@
 		5B4B18191B5D991F003C2826 /* UIView+VBAutolayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+VBAutolayout.h"; sourceTree = "<group>"; };
 		5B4B181A1B5D991F003C2826 /* UIView+VBAutolayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+VBAutolayout.m"; sourceTree = "<group>"; };
 		5B4B181B1B5D991F003C2826 /* VBAutolayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VBAutolayout.h; sourceTree = "<group>"; };
-		5B4B181E1B5D9974003C2826 /* UIView+VBAutolayoutConvenience.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+VBAutolayoutConvenience.h"; sourceTree = "<group>"; };
-		5B4B181F1B5D9974003C2826 /* UIView+VBAutolayoutConvenience.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+VBAutolayoutConvenience.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,8 +135,6 @@
 				5B4B18181B5D991F003C2826 /* NSLayoutConstraint+VBAutolayout.m */,
 				5B4B18191B5D991F003C2826 /* UIView+VBAutolayout.h */,
 				5B4B181A1B5D991F003C2826 /* UIView+VBAutolayout.m */,
-				5B4B181E1B5D9974003C2826 /* UIView+VBAutolayoutConvenience.h */,
-				5B4B181F1B5D9974003C2826 /* UIView+VBAutolayoutConvenience.m */,
 			);
 			name = VBAutolayout;
 			path = ../VBAutolayout;
@@ -245,7 +240,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5B4B18201B5D9974003C2826 /* UIView+VBAutolayoutConvenience.m in Sources */,
 				5B4B17F51B5D981F003C2826 /* ViewController.m in Sources */,
 				5B4B17F21B5D981F003C2826 /* AppDelegate.m in Sources */,
 				5B4B181D1B5D991F003C2826 /* UIView+VBAutolayout.m in Sources */,

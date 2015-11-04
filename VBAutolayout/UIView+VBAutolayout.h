@@ -32,7 +32,18 @@
  *
  *  @param view subview
  */
-- (void) addSubviewAutolayoutReady:(UIView *)view;
+- (void) addSubviewAutolayoutReady:(nonnull UIView *)view;
+
+/**
+ *  Add subview with constraints from layout dictionary.
+ *  <br>For layout format visit NSLayoutConstraint+VBAutolayout.h
+ *  @see +constraintsWithItem:layout:
+ *
+ *  @param view subview
+ *  @param layout Constraints described in VBAutolayout format.
+ */
+- (nonnull NSArray<NSLayoutConstraint*>*) addSubview:(nonnull UIView *)view
+                                          withLayout:(nonnull NSDictionary*)layout;
 
 #pragma mark - constraints
 /**
@@ -42,7 +53,7 @@
  *
  *  @return returns added constraint
  */
-- (NSLayoutConstraint*) addConstraintAndLayoutSubviews:(NSLayoutConstraint*) constraint;
+- (nonnull NSLayoutConstraint*) addConstraintAndLayoutSubviews:(nonnull NSLayoutConstraint*) constraint;
 
 /**
  *  Add constraint and call setNeedsLayout, layoutIfNeeded
@@ -51,6 +62,6 @@
  *
  *  @return added constraints
  */
-- (NSArray*) addConstraintsAndLayoutSubviews:(NSArray *)constraints;
+- (nonnull NSArray<NSLayoutConstraint*>*) addConstraintsAndLayoutSubviews:(nonnull NSArray<NSLayoutConstraint*>*)constraints;
 
 @end

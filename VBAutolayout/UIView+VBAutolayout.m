@@ -29,17 +29,25 @@
 @implementation UIView (VBAutolayout)
 
 #pragma mark - addSubview
-- (void) addSubviewAutolayoutReady:(UIView *)view {
+- (void) addSubviewAutolayoutReady:(nonnull UIView *)view {
     view.translatesAutoresizingMaskIntoConstraints = NO;
     [self addSubview:view];
 }
 
+- (nonnull NSArray<NSLayoutConstraint*>*) addSubview:(nonnull UIView *)view
+                                          withLayout:(nonnull NSDictionary*)layout {
+    [self addSubviewAutolayoutReady:view];
+    return [self addConstraintsAndLayoutSubviews:
+            [NSLayoutConstraint constraintsWithItem:view
+                                             layout:layout]];
+}
+
 #pragma mark - constraints
-- (NSLayoutConstraint*) addConstraintAndLayoutSubviews:(NSLayoutConstraint*) constraint {
+- (nonnull NSLayoutConstraint*) addConstraintAndLayoutSubviews:(nonnull NSLayoutConstraint*) constraint {
     return [[self addConstraintsAndLayoutSubviews:@[constraint]]
             lastObject];
 }
-- (NSArray*) addConstraintsAndLayoutSubviews:(NSArray *)constraints {
+- (nonnull NSArray<NSLayoutConstraint*>*) addConstraintsAndLayoutSubviews:(nonnull NSArray<NSLayoutConstraint*>*)constraints {
     [self addConstraints:constraints];
     [self setNeedsLayout];
     [self layoutIfNeeded];

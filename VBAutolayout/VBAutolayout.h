@@ -35,6 +35,5 @@
 
 #import "NSLayoutConstraint+VBAutolayout.h"
 #import "UIView+VBAutolayout.h"
-#import "UIView+VBAutolayoutConvenience.h"
 
 #endif
