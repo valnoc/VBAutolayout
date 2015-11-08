@@ -47,8 +47,10 @@
     self.lb3.text = @"Test 3";
     self.lb3.backgroundColor = [UIColor greenColor];
     [self.view addSubview:self.lb3
-               withLayout:@{VBAutolayoutAttributeTop:       @{VBAutolayoutItem:     self.lb2,
-                                                              VBAutolayoutConstant: @"20"},
+               withLayout:@{VBAutolayoutAttributeTop:       @[@{VBAutolayoutItem:     self.lb2,
+                                                                VBAutolayoutConstant: @">10"},
+                                                              @{VBAutolayoutItem:     self.lb2,
+                                                                VBAutolayoutConstant: @"<50@999"}],
                             VBAutolayoutAttributeWidth:     @"140",
                             VBAutolayoutAttributeHeight:    @"40",
                             VBAutolayoutAttributeCenterX:   @"0"}];
