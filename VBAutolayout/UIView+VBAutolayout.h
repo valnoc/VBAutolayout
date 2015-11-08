@@ -41,6 +41,8 @@
  *
  *  @param view subview
  *  @param layout Constraints described in VBAutolayout format.
+ *
+ *  @return Created constraints as NSDictionary. Keys are VBAutolayoutAttribute-s. Values are NSLayoutConstraint* or NSArray<NSLayoutConstraint*>* depending on given layout.
  */
 - (nonnull NSDictionary*) addSubview:(nonnull UIView *)view
                           withLayout:(nonnull NSDictionary*)layout;
