@@ -206,6 +206,12 @@
 }
 
 + (nonnull NSArray<NSNumber*>*) parsedLayoutConstant:(NSString*) constant {
+    NSArray<NSString*>* comp = [[constant stringByReplacingOccurrencesOfString:@"(\\D*)(\\d*)@?(\\d*)"
+                                                        withString:@"$1,$2,$3"
+                                                           options:NSRegularExpressionSearch
+                                                             range:NSMakeRange(0, constant.length)]
+                                componentsSeparatedByString:@","];
+    
     NSLayoutRelation relation = NSLayoutRelationEqual;
     if ([constant hasPrefix:@">"]) {
         relation = NSLayoutRelationGreaterThanOrEqual;
@@ -213,12 +219,7 @@
         relation = NSLayoutRelationLessThanOrEqual;
     }
     
-    NSString* cnst = [constant stringByReplacingOccurrencesOfString:@"\\D*(\\d)"
-                                                       withString:@"$1"
-                                                          options:NSRegularExpressionSearch
-                                                            range:NSMakeRange(0, constant.length)];
-#warning add priority
-    return @[@(relation), @(cnst.doubleValue)];
+    return @[@(relation), @(comp[1].integerValue), @(comp[2].integerValue)];
 }
 + (nonnull NSString*) constantWithAttrInfo:(nonnull id) attrInfo {
     return [attrInfo isKindOfClass:[NSDictionary class]] ? attrInfo[VBAutolayoutConstant] : attrInfo;
