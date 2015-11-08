@@ -164,6 +164,9 @@
                                                    attribute2:(NSLayoutAttribute)attr2
                                                      attrInfo:(id)attrInfo {
     NSMutableArray<NSLayoutConstraint*>* result = [NSMutableArray new];
+    if ([attrInfo isKindOfClass:[NSString class]]) {
+        attrInfo = @{VBAutolayoutConstant: attrInfo};
+    }
     if ([attrInfo isKindOfClass:[NSDictionary class]]) {
         [result addObject:[self constraintWithItem:view1
                                         attribute1:attr1
@@ -185,24 +188,31 @@
                                  attribute2:(NSLayoutAttribute)attr2
                                    attrInfo:(NSDictionary*)attrInfo {
     UIView* superview = ((UIView*)view1).superview;
-    NSArray<NSNumber*>* cnstInfo = [self parsedLayoutConstant:[self constantWithAttrInfo:attrInfo]];
+    NSArray<NSNumber*>* cnstInfo = [self parsedLayoutConstant:attrInfo[VBAutolayoutConstant]];
     //
-    id item = [self itemWithAttrInfo:attrInfo];
+    id item = attrInfo[VBAutolayoutItem];
+    NSLayoutRelation relation = [cnstInfo[0] integerValue];
+    double constant = [cnstInfo[1] doubleValue];
+    double priority = [cnstInfo[2] doubleValue];
+    //
     if (attr2 == NSLayoutAttributeNotAnAttribute) {
         item = nil;
     }else if (item == nil) {
         item = superview;
         attr2 = attr1;
+        if (attr1 == NSLayoutAttributeTrailing || attr1 == NSLayoutAttributeBottom) {
+            constant = -constant;
+        }
     }
-    NSLayoutRelation relation = [cnstInfo[0] integerValue];
-    double constant = [cnstInfo[1] doubleValue];
     //
-    return [NSLayoutConstraint constraintWithItem:view1
-                                        attribute:attr1
-                                        relatedBy:relation
-                                           toItem:item
-                                        attribute:attr2
-                                         constant:constant];
+    NSLayoutConstraint* cnstr = [NSLayoutConstraint constraintWithItem:view1
+                                                             attribute:attr1
+                                                             relatedBy:relation
+                                                                toItem:item
+                                                             attribute:attr2
+                                                              constant:constant];
+    cnstr.priority = priority;
+    return cnstr;
 }
 
 + (nonnull NSArray<NSNumber*>*) parsedLayoutConstant:(NSString*) constant {
@@ -219,13 +229,9 @@
         relation = NSLayoutRelationLessThanOrEqual;
     }
     
-    return @[@(relation), @(comp[1].integerValue), @(comp[2].integerValue)];
-}
-+ (nonnull NSString*) constantWithAttrInfo:(nonnull id) attrInfo {
-    return [attrInfo isKindOfClass:[NSDictionary class]] ? attrInfo[VBAutolayoutConstant] : attrInfo;
-}
-+ (nullable id) itemWithAttrInfo:(nonnull id) attrInfo {
-    return [attrInfo isKindOfClass:[NSDictionary class]] ? attrInfo[VBAutolayoutItem] : nil;
+    NSInteger value = comp[1].length > 0 ? comp[1].integerValue : 0;
+    NSInteger priority = comp[2].length > 0 ? comp[2].integerValue : 1000;
+    return @[@(relation), @(value), @(priority)];
 }
 
 @end
