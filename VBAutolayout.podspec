@@ -9,7 +9,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "VBAutolayout"
-  s.version          = "1.0.1"
+  s.version          = "2.0"
   s.summary          = "VBAutolayout is a library which makes programmatic autolayout creation comfortable, readable and code-minimized."
   s.description      = <<-DESC
 There are developers (like me) who prefer to create UI programmatically due to numerous reasons. I use storyboards for segues and user scene-path. But UIViewControllers are left empty. And I do not use xibs.
@@ -24,7 +24,7 @@ VBAutolayout is a library which makes programmatic autolayout creation comfortab
   s.author           = { "Valeriy Bezuglyy" => "valnocorner@gmail.com" }
   s.source           = { :git => "https://github.com/valnoc/VBAutolayout.git", :tag => "v#{s.version}" }
 
-  s.platform     = :ios, '8.0'
+  s.platform     = :ios, '8.1'
   s.requires_arc = true
 
   s.source_files = 'VBAutolayout/**/*'
