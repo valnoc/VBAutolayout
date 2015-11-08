@@ -216,7 +216,7 @@
 }
 
 + (nonnull NSArray<NSNumber*>*) parsedLayoutConstant:(NSString*) constant {
-    NSArray<NSString*>* comp = [[constant stringByReplacingOccurrencesOfString:@"(\\D*)(\\d*)@?(\\d*)"
+    NSArray<NSString*>* comp = [[constant stringByReplacingOccurrencesOfString:@"([><=]*)\\(?(-?\\d*)\\)?@?(\\d*)"
                                                         withString:@"$1,$2,$3"
                                                            options:NSRegularExpressionSearch
                                                              range:NSMakeRange(0, constant.length)]
