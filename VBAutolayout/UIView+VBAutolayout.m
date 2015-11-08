@@ -34,12 +34,23 @@
     [self addSubview:view];
 }
 
-- (nonnull NSArray<NSLayoutConstraint*>*) addSubview:(nonnull UIView *)view
-                                          withLayout:(nonnull NSDictionary*)layout {
+- (nonnull NSDictionary*) addSubview:(nonnull UIView *)view
+                          withLayout:(nonnull NSDictionary*)layout {
     [self addSubviewAutolayoutReady:view];
-    return [self addConstraintsAndLayoutSubviews:
-            [NSLayoutConstraint constraintsWithItem:view
-                                             layout:layout]];
+    
+    NSDictionary* dict = [NSLayoutConstraint constraintsWithItem:view
+                                                          layout:layout];
+    NSMutableArray* cnstr = [NSMutableArray new];
+    [dict enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+        if ([obj isKindOfClass:[NSLayoutConstraint class]]) {
+            [cnstr addObject:obj];
+        }else{
+            [cnstr addObjectsFromArray:obj];
+        }
+    }];
+    [self addConstraintsAndLayoutSubviews:cnstr];
+
+    return dict;
 }
 
 #pragma mark - constraints

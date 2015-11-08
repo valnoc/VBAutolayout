@@ -42,8 +42,8 @@
  *  @param view subview
  *  @param layout Constraints described in VBAutolayout format.
  */
-- (nonnull NSArray<NSLayoutConstraint*>*) addSubview:(nonnull UIView *)view
-                                          withLayout:(nonnull NSDictionary*)layout;
+- (nonnull NSDictionary*) addSubview:(nonnull UIView *)view
+                          withLayout:(nonnull NSDictionary*)layout;
 
 #pragma mark - constraints
 /**
