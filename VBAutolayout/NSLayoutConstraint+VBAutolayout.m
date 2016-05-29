@@ -174,10 +174,10 @@
                                          attrInfo:attrInfo]];
     }else{
         for (NSDictionary* info in attrInfo) {
-            [result addObject:[self constraintWithItem:view1
+            [result addObject:[[self constraintsWithItem:view1
                                             attribute1:attr1
                                             attribute2:attr2
-                                              attrInfo:info]];
+                                              attrInfo:info] firstObject]];
         }
     }
     return result;
