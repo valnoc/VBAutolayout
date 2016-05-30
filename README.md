@@ -1,5 +1,6 @@
 VBAutolayout
 ===========
+[![](https://img.shields.io/cocoapods/v/VBAutolayout.svg)]()
 
 There are developers (like me) who prefer to create UI programmatically due to numerous reasons. I use storyboards for segues and user scene-path. But UIViewControllers are left empty. And I do not use xibs.
 
