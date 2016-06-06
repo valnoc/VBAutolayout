@@ -65,6 +65,9 @@ Drag VBAutolayout dir into your project.
 
 You can import "VBAutolayout.h" into precompiled header.
 
+## Example
+https://gist.github.com/valnoc/7dab86a57e0a8124ceb94905debc4dd6
+
 ## License
 VBAutolayout is available under the MIT license. See the LICENSE file for more info.
 
